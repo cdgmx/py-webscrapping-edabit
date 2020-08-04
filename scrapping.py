@@ -30,9 +30,36 @@ browser.get(my_url)
 myElem = WebDriverWait(browser, 10).until(EC.presence_of_element_located((By.CLASS_NAME, 'description')))
 
 #parse the page source as html file
-page_soup = soup(browser.page_source, "html.parser")
+#page_soup = soup(browser.page_source, "html.parser")
+
+
+#used lmxl to parse data
+page_soup2 = soup(browser.page_source, 'lxml')
+
+
+match = page_soup2.find('div', class_='ui divided selection very relaxed middle aligned list')
+
+headline = match.div.a.h3.text
+print(headline)
+
+
+#main_file = page_soup.find_all("div", class_="item no-highlight")
+
+#main_file = page_soup.find_all("div", class_="ui divided selection very relaxed middle aligned list")
+
+
+
+
+
+#print(main_file)
+
+
+#for each_div in page_soup.findAll('div',{'class':'ui divided selection very relaxed middle aligned list'}):
+    #print(each_div)
+
+
 
 
 #printing the pagesource with condition of finding all div only with a class of "name of a class"
-print(page_soup.find_all("div", class_="ui divided selection very relaxed middle aligned list"))
+#print(main_file)
 
