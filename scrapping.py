@@ -47,28 +47,28 @@ page_soup2 = soup(browser.page_source, 'lxml')
 #match = page_soup2.find('div', class_='ui divided selection very relaxed middle aligned list')
 
 
-# headline = []
-# description = []
+headline = []
+description = []
 x = 0
 for match in page_soup2.find_all('div', class_='item no-highlight'):
 
-    headline = match.a.h3.text
-    description = match.a.div.text
+    headline.append(match.a.h3.text)
+    description.append(match.a.div.text)
 
-    print(headline)  
-    print(description)
-    print(x)
+    
     x+=1
 
-
+challnext = 0
 
 @client.command()
-async def chall(ctx):
+async def chall(ctx, arg):
 
-    for y in range(x):
-        await ctx.send(headline[y] + "\n" +description[y]+ "\n")
+    await ctx.send(headline[int(arg)] + "\n" +description[int(arg)]+ "\n--------------------------------------")
 
-client.run('NzQwMTA1OTQxMzkwOTgzMjIx.XykLXg.zEdSWMh83dpbZSynrPcdtTynQS4')
+
+
+
+client.run('NzQwMTA1OTQxMzkwOTgzMjIx.XykLXg.'+'SdYzWsCNfjsKUvQvBbhzobz_zJo')
 
 
 
