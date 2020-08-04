@@ -3,6 +3,8 @@
 #pip install webdriver_manager
 
 
+import discord
+from  discord.ext import commands
 
 from bs4 import BeautifulSoup as soup
 
@@ -31,19 +33,52 @@ myElem = WebDriverWait(browser, 10).until(EC.presence_of_element_located((By.CLA
 
 #parse the page source as html file
 #page_soup = soup(browser.page_source, "html.parser")
+client = commands.Bot(command_prefix = '!')
 
+@client.event
+
+async def on_ready():
+    print("ready")
 
 #used lmxl to parse data
 page_soup2 = soup(browser.page_source, 'lxml')
 
 
-match = page_soup2.find('div', class_='ui divided selection very relaxed middle aligned list')
+#match = page_soup2.find('div', class_='ui divided selection very relaxed middle aligned list')
 
-headline = match.div.a.h3.text
-description = match.div.a.div.text
 
-print(headline)
-print(description)
+# headline = []
+# description = []
+x = 0
+for match in page_soup2.find_all('div', class_='item no-highlight'):
+
+    headline = match.a.h3.text
+    description = match.a.div.text
+
+    print(headline)  
+    print(description)
+    print(x)
+    x+=1
+
+
+
+@client.command()
+async def chall(ctx):
+
+    for y in range(x):
+        await ctx.send(headline[y] + "\n" +description[y]+ "\n")
+
+client.run('NzQwMTA1OTQxMzkwOTgzMjIx.XykLXg.zEdSWMh83dpbZSynrPcdtTynQS4')
+
+
+
+
+
+
+
+
+
+
 
 
 #main_file = page_soup.find_all("div", class_="item no-highlight")
