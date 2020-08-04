@@ -40,7 +40,10 @@ page_soup2 = soup(browser.page_source, 'lxml')
 match = page_soup2.find('div', class_='ui divided selection very relaxed middle aligned list')
 
 headline = match.div.a.h3.text
+description = match.div.a.div.text
+
 print(headline)
+print(description)
 
 
 #main_file = page_soup.find_all("div", class_="item no-highlight")
